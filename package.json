@@ -1,0 +1,16 @@
+{
+  "name": "from-toggle-tracker",
+  "version": "0.0.1",
+  "description": "translate worklogs from toggle to jira",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roman Vayser",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^4.8.8",
+    "dayjs": "^1.8.24",
+    "jira-client": "^6.16.0"
+  }
+}
