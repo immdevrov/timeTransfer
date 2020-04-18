@@ -1,6 +1,6 @@
-const { TimeEntries } = require('./timeEntries');
-const { JiraConnect } = require('./jiraConnect');
-const { Worklogs } = require('./worklogs')
+const { TimeEntries } = require('./classes/timeEntries');
+const { JiraConnect } = require('./classes/jiraConnect');
+const { Worklogs } = require('./classes/worklogs')
 
 const { fileName, user, jiraConnectOptions} = require('./.config');
 
