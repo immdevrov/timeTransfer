@@ -1,4 +1,4 @@
-const { formatDuration, formatStartDate } = require('./utils');
+const { formatDuration, formatStartDate } = require('../utils');
 
 const isKeyValid = (key) => {
   const trueKey = new RegExp(/\w+-\d\d?\d?\d?/);
