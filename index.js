@@ -10,5 +10,6 @@ const entries = timeEntries.getRecords();
 const worklogs = new Worklogs(entries);
 const validWorklogs = worklogs.getValidWorklogs();
 
+
 const jira = new JiraConnect({ user, jiraConnectOptions });
 validWorklogs.map(worklog => jira.createWorklog(worklog));
