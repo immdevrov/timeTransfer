@@ -7,7 +7,7 @@ const formatDuration = (seconds) => {
   if (seconds < 60) { return; }
   const minutes = parseInt(seconds / 60);
   const hours = parseInt(minutes / 60);
-  return hours ? `${hours}h ${minutes}m` : `${minutes}m`;
+  return hours ? `${hours}h ${minutes % 60}m` : `${minutes % 60}m`;
 };
 
 const formatStartDate = (dateISOString) => {
