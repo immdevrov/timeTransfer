@@ -3,22 +3,15 @@ const dayjs = require('dayjs');
 const customParseFormat = require('dayjs/plugin/customParseFormat');
 dayjs.extend(customParseFormat);
 
-const getTime = (time) => {
-  const t = dayjs(time, 'HH:mm:ss');
-  return {
-    hours: t.hour(),
-    minutes: t.minute()
-  }
-}
-
-const formatDuration = (duration) => {
-  const { hours, minutes } = getTime(duration);
-  if (!hours && !minutes) return 'spent time < 1m';
+const formatDuration = (seconds) => {
+  if (seconds < 60) { return; }
+  const minutes = parseInt(seconds / 60);
+  const hours = parseInt(minutes / 60);
   return hours ? `${hours}h ${minutes}m` : `${minutes}m`;
 };
 
-const formatStartDate = (date, time) => {
-  const startDate = dayjs(`${date} ${time}`, 'YYYY-MM-DD HH:mm:ss');
+const formatStartDate = (dateISOString) => {
+  const startDate = dayjs(dateISOString, 'YYYY-MM-DDTHH:mm:ssZ');
   return startDate.format('YYYY-MM-DDTHH:mm:ss.SSSZZ');
 }
 

@@ -1,5 +1,3 @@
-const { formatDuration, formatStartDate } = require('../utils');
-
 const isKeyValid = (key) => {
   const trueKey = new RegExp(/\w+-\d\d?\d?\d?/);
   const matches = key.match(trueKey);
@@ -15,20 +13,18 @@ const isTimeSpentValid = (ts) => {
 }
 
 const validateWorklog = ({ key, timeSpent, started }) => {
-  if (!key || !timeSpent || !started) { throw Error('wrong worklog') };
+  if (!key || !timeSpent || !started) { return false };
 
   return isKeyValid(key) && isTimeSpentValid(timeSpent);
 }
 
 class Worklogs {
   constructor (entries) {
-    this.worlogs = entries.map((e) => {
-      const key = `${e['Project']}-${e['Description']}`;
-      const timeSpent = formatDuration(e['Duration']);
-      const started = formatStartDate(e['Start date'], e['Start time']);
-      const isValid = validateWorklog({ key, timeSpent, started });
+    this.worlogs = entries.map(({ start, duration, description }) => {
+      const worklog = { key: description, timeSpent: duration, started: start };
+      const isValid = validateWorklog({ ...worklog });
 
-      return { key, timeSpent, started, isValid };
+      return { ...worklog, isValid };
     });
   }
 
