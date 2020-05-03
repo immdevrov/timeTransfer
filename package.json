@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.2",
-    "csv-parse": "^4.8.8",
     "dayjs": "^1.8.24",
     "jira-client": "^6.16.0"
   }

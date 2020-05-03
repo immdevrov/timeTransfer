@@ -9,7 +9,7 @@ const { dates } = require('./.config');
     const entries = await toggleConnectInstance.getEntries(dates);
     const worklogs = new Worklogs(entries);
     const validWorklogs = worklogs.getValidWorklogs();
-    console.log(validWorklogs.filter(w => w.key === 'PK-250'))
-    // validWorklogs.map(worklog => jiraConnectInctance.createWorklog(worklog));
+    console.log(validWorklogs);
+    validWorklogs.map(worklog => jiraConnectInctance.createWorklog(worklog));
   }
 )();
