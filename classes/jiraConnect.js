@@ -21,4 +21,6 @@ class JiraConnect {
 
 }
 
-module.exports = { JiraConnect };
+const { user, jiraConnectOptions } = require('../.config');
+const jiraConnectInctance = new JiraConnect({ user, jiraConnectOptions });
+module.exports = { jiraConnectInctance };

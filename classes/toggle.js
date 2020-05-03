@@ -31,4 +31,7 @@ class ToggleConnect {
   }
 };
 
-module.exports = { ToggleConnect };
+const { toggleConnectAuth } = require('../.config');
+const toggleConnectInstance = new ToggleConnect(toggleConnectAuth);
+
+module.exports = { toggleConnectInstance };
