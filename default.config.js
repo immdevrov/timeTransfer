@@ -20,5 +20,6 @@ const dates = {
   start_date: '2020-04-29T15:42:46+02:00',
   end_date: '2020-05-01T15:42:46+02:00'
 }
+const linkToTimesheet = 'your link' // logged in console after track
 
-module.exports = { user, jiraConnectOptions, toggleConnectAuth, dates };
+module.exports = { user, jiraConnectOptions, toggleConnectAuth, dates, linkToTimesheet };

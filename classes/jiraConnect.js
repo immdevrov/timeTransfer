@@ -13,9 +13,9 @@ class JiraConnect {
     });
   }
 
-  createWorklog ({ key, timeSpent, started }) {
+  async createWorklog ({ key, timeSpent, started }) {
     if (!key || !timeSpent || !started) { throw Error('wrong worklog') };
-    this.jira.addWorklog(key, { timeSpent, started });
+    await this.jira.addWorklog(key, { timeSpent, started });
     return this;
   }
 
