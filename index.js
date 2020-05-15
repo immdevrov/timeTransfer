@@ -3,7 +3,7 @@ const { jiraConnectInctance } = require('./classes/jiraConnect');
 const { Worklogs } = require('./classes/worklogs')
 
 const { dates: customDates, linkToTimesheet } = require('./.config');
-const { today, startFromCommandLine } = require('./utils');
+const { today, startFromCommandLine, rl } = require('./utils');
 
 async function transferEntries (mode) {
   let dates;
@@ -11,7 +11,10 @@ async function transferEntries (mode) {
     dates = today;
   } else if (mode === 'dates' ) {
     dates = customDates;
-  } else { return; }
+  } else {
+    rl.close();
+    return;
+  }
 
   const entries = await toggleConnectInstance.getEntries(dates);
   const worklogs = new Worklogs(entries);
@@ -19,6 +22,7 @@ async function transferEntries (mode) {
   console.log(validWorklogs);
   console.log(linkToTimesheet)
   validWorklogs.map(async worklog => await jiraConnectInctance.createWorklog(worklog));
+  rl.close();
 };
 
 
