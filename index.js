@@ -9,18 +9,17 @@ async function transferEntries (mode) {
   let dates;
   if (mode === 'today') {
     dates = today;
-  } else if (mode === 'dates' ) {
+  } else if (mode === 'dates') {
     dates = customDates;
   } else {
     rl.close();
     return;
   }
-
   const entries = await toggleConnectInstance.getEntries(dates);
   const worklogs = new Worklogs(entries);
   const validWorklogs = worklogs.getValidWorklogs();
   console.log(validWorklogs);
-  console.log(linkToTimesheet)
+  console.log(linkToTimesheet);
   validWorklogs.map(async worklog => await jiraConnectInctance.createWorklog(worklog));
   rl.close();
 };
