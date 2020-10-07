@@ -1,5 +1,5 @@
 const isKeyValid = (key) => {
-  const trueKey = new RegExp(/\w+-\d\d?\d?\d?/);
+  const trueKey = new RegExp(/\w+-\d{1,}/);
   const matches = key.match(trueKey);
   if (!matches) { return false; }
   return matches[0].length === key.length;
