@@ -1,4 +1,5 @@
-const JiraApi = require('jira-client');
+import JiraApi from 'jira-client';
+import { user, jiraConnectOptions } from '../../.config.js';
 
 class JiraConnect {
   constructor ({ user, jiraConnectOptions }) {
@@ -21,6 +22,4 @@ class JiraConnect {
 
 }
 
-const { user, jiraConnectOptions } = require('../.config');
-const jiraConnectInctance = new JiraConnect({ user, jiraConnectOptions });
-module.exports = { jiraConnectInctance };
+export default new JiraConnect({ user, jiraConnectOptions });

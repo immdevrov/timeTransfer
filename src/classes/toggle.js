@@ -1,5 +1,6 @@
-const axios = require('axios');
-const { formatDuration, formatStartDate } = require('../utils');
+import axios from 'axios';
+import { formatDuration, formatStartDate } from '../utils.js';
+import { toggleConnectAuth } from '../../.config.js';
 
 class ToggleConnect {
   constructor(auth) {
@@ -31,7 +32,5 @@ class ToggleConnect {
   }
 };
 
-const { toggleConnectAuth } = require('../.config');
-const toggleConnectInstance = new ToggleConnect(toggleConnectAuth);
 
-module.exports = { toggleConnectInstance };
+export default new ToggleConnect(toggleConnectAuth);

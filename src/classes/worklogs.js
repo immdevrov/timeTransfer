@@ -18,9 +18,9 @@ const validateWorklog = ({ key, timeSpent, started }) => {
   return isKeyValid(key) && isTimeSpentValid(timeSpent);
 }
 
-class Worklogs {
+export default class Worklogs {
   constructor (entries) {
-    this.worlogs = entries.map(({ start, duration, description }) => {
+    this.worklogs = entries.map(({ start, duration, description }) => {
       const worklog = { key: description, timeSpent: duration, started: start };
       const isValid = validateWorklog({ ...worklog });
 
@@ -29,12 +29,10 @@ class Worklogs {
   }
 
   getValidWorklogs () {
-    return this.worlogs.filter(w => w.isValid);
+    return this.worklogs.filter(w => w.isValid);
   }
 
   getInvalidWorklogs () {
-    return this.worlogs.filter(w => !w.isValid);
+    return this.worklogs.filter(w => !w.isValid);
   }
 }
-
-module.exports = { Worklogs }
