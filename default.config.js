@@ -1,6 +1,6 @@
 const user = {
   username: 'Jira email', // change
-  password: 'apiToken'  // change
+  password: 'apiToken', // change
 }
 
 const jiraConnectOptions = {
@@ -10,16 +10,22 @@ const jiraConnectOptions = {
   strictSSL: true,
 }
 
-const toggleApiToken = 'toggle api token'; // change
+const toggleApiToken = 'toggle api token' // change
 const toggleConnectAuth = {
   username: toggleApiToken,
-  password: 'api_token' // leave as it is
-};
+  password: 'api_token', // leave as it is
+}
 
 const dates = {
   start_date: '2020-04-29T15:42:46+02:00',
-  end_date: '2020-05-01T15:42:46+02:00'
+  end_date: '2020-05-01T15:42:46+02:00',
 }
 const linkToTimesheet = 'your link' // logged in console after track
 
-module.exports = { user, jiraConnectOptions, toggleConnectAuth, dates, linkToTimesheet };
+module.exports = {
+  user,
+  jiraConnectOptions,
+  toggleConnectAuth,
+  dates,
+  linkToTimesheet,
+}

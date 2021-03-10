@@ -1,36 +1,39 @@
-import axios from 'axios';
-import { formatDuration, formatStartDate } from '../utils.js';
-import { toggleConnectAuth } from '../../.config.js';
+import axios from 'axios'
+import { formatDuration, formatStartDate } from '../utils.js'
+import { toggleConnectAuth } from '../../.config.js'
 
 class ToggleConnect {
   constructor(auth) {
-    this.getDataFromApi = this.getDataFromApi.bind(this);
+    this.getDataFromApi = this.getDataFromApi.bind(this)
     this.axiosConfig = {
       method: 'get',
       url: 'https://www.toggl.com/api/v8/time_entries',
-      auth: { ...auth }
+      auth: { ...auth },
     }
   }
 
-  async getDataFromApi (params) {
-    const config = { ...this.axiosConfig, params}
-    const { data } = await axios(config);
-    const entries = data.map(({ start, duration, description }) => ({ start, duration, description }));
-    return this.formatTimeEntries(entries);
+  async getDataFromApi(params) {
+    const config = { ...this.axiosConfig, params }
+    const { data } = await axios(config)
+    const entries = data.map(({ start, duration, description }) => ({
+      start,
+      duration,
+      description,
+    }))
+    return this.formatTimeEntries(entries)
   }
 
-  formatTimeEntries (entries) {
-    return entries.map(e => ({
+  formatTimeEntries(entries) {
+    return entries.map((e) => ({
       start: formatStartDate(e.start),
       duration: formatDuration(e.duration),
-      description: e.description
-    }));
+      description: e.description,
+    }))
   }
 
-  async getEntries (params) {
-    return await this.getDataFromApi(params);
+  async getEntries(params) {
+    return await this.getDataFromApi(params)
   }
-};
+}
 
-
-export default new ToggleConnect(toggleConnectAuth);
+export default new ToggleConnect(toggleConnectAuth)
