@@ -1,10 +1,8 @@
 import axios from 'axios'
 import { formatDuration, formatStartDate } from '../utils.js'
-import { toggleConnectAuth } from '../../.config.js'
 
-class ToggleConnect {
+export default class ToggleConnect {
   constructor(auth) {
-    this.getDataFromApi = this.getDataFromApi.bind(this)
     this.axiosConfig = {
       method: 'get',
       url: 'https://www.toggl.com/api/v8/time_entries',
@@ -35,5 +33,3 @@ class ToggleConnect {
     return await this.getDataFromApi(params)
   }
 }
-
-export default new ToggleConnect(toggleConnectAuth)

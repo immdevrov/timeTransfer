@@ -25,7 +25,7 @@ const validateWorklog = ({ key, timeSpent, started }) => {
 }
 
 export default class Worklogs {
-  constructor(entries) {
+  constructor (entries) {
     this.worklogs = entries.map(({ start, duration, description }) => {
       const worklog = { key: description, timeSpent: duration, started: start }
       const isValid = validateWorklog({ ...worklog })
@@ -34,11 +34,11 @@ export default class Worklogs {
     })
   }
 
-  getValidWorklogs() {
+  getValidWorklogs () {
     return this.worklogs.filter((w) => w.isValid)
   }
 
-  getInvalidWorklogs() {
+  getInvalidWorklogs () {
     return this.worklogs.filter((w) => !w.isValid)
   }
 }
