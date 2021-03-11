@@ -17,7 +17,7 @@ export default class JiraConnect {
   async sendWorklog({ key, timeSpent, started }) {
     await axios.request({
       url: `/rest/api/${this.jiraConnectOptions.apiVersion}/issue/${key}/worklog`,
-      baseURL: this.jiraConnectOptions.host,
+      baseURL: 'https://' + this.jiraConnectOptions.host,
       method: 'post',
       auth: {
         username: this.user.username,
