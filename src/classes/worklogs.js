@@ -1,14 +1,21 @@
-const isKeyValid = (key) => {
-  const trueKey = new RegExp(/\w+-\d{1,}/)
-  const matches = key.match(trueKey)
+const extractKeyFromDescription = (description) => {
+  const trueKey = new RegExp(/[A-Z]+-\d+/g)
+
+  const matches = description.match(trueKey)
+
   if (!matches) {
-    return false
+    throw new TypeError('Invalid worklog description')
   }
-  return matches[0].length === key.length
+
+  if (matches.length > 1) {
+    throw new TypeError('Found more than one key in description')
+  }
+
+  return matches[0]
 }
 
 const isTimeSpentValid = (ts) => {
-  const trueTimeSpent = new RegExp(/(\dh \d\d?m)|((\dh))|(\d\d?m)/)
+  const trueTimeSpent = new RegExp(/(\dh \d\d?m)|(\dh)|(\d\d?m)/)
   const matches = ts.match(trueTimeSpent)
   if (!matches) {
     return false
@@ -21,24 +28,33 @@ const validateWorklog = ({ key, timeSpent, started }) => {
     return false
   }
 
-  return isKeyValid(key) && isTimeSpentValid(timeSpent)
+  return isTimeSpentValid(timeSpent)
 }
 
 export default class Worklogs {
-  constructor (entries) {
+  constructor(entries) {
     this.worklogs = entries.map(({ start, duration, description }) => {
-      const worklog = { key: description, timeSpent: duration, started: start }
-      const isValid = validateWorklog({ ...worklog })
+      let isKeyValid = true
+      let key = description
 
-      return { ...worklog, isValid }
+      try {
+        key = extractKeyFromDescription(description)
+      } catch {
+        isKeyValid = false
+      }
+
+      const worklog = { key, timeSpent: duration, started: start }
+      const isValid = validateWorklog(worklog)
+
+      return { ...worklog, isValid: isValid && isKeyValid }
     })
   }
 
-  getValidWorklogs () {
+  getValidWorklogs() {
     return this.worklogs.filter((w) => w.isValid)
   }
 
-  getInvalidWorklogs () {
+  getInvalidWorklogs() {
     return this.worklogs.filter((w) => !w.isValid)
   }
 }
