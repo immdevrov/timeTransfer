@@ -31,12 +31,12 @@ export default async function transferEntries(mode) {
   console.log(validWorklogs)
   console.log(linkToTimesheet)
 
-  // const jiraConnectInstance = new JiraConnect(user, jiraConnectOptions)
-  //
-  // validWorklogs.map(
-  //   async (worklog) =>
-  //     await jiraConnectInstance.createWorklog(worklog).catch((e) => {
-  //       console.log(e)
-  //     })
-  // )
+  const jiraConnectInstance = new JiraConnect(user, jiraConnectOptions)
+
+  validWorklogs.map(
+    async (worklog) =>
+      await jiraConnectInstance.createWorklog(worklog).catch((e) => {
+        console.log(e)
+      })
+  )
 }
