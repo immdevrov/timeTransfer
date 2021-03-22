@@ -1,5 +1,5 @@
 const extractKeyFromDescription = (description) => {
-  const trueKey = new RegExp(/[A-Z]+-\d+/g)
+  const trueKey = new RegExp(/[A-Z1-9]+-\d+/g)
 
   const matches = description.match(trueKey)
 
