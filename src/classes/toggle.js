@@ -5,7 +5,7 @@ export default class ToggleConnect {
   constructor(auth) {
     this.axiosConfig = {
       method: 'get',
-      url: 'https://www.toggl.com/api/v8/time_entries',
+      url: 'https://api.track.toggl.com/api/v8/time_entries',
       auth: { ...auth },
     }
   }
